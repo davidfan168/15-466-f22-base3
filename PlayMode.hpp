@@ -39,7 +39,7 @@ struct PlayMode : Mode {
 	// glm::quat upper_leg_base_rotation;
 	// glm::quat lower_leg_base_rotation;
 
-	// std::shared_ptr< Sound::PlayingSample > background_music;
+	std::shared_ptr< Sound::PlayingSample > background_music;
 	
 	//camera:
 	Scene::Camera *camera = nullptr;
