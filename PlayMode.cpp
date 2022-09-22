@@ -250,6 +250,7 @@ void PlayMode::update(float elapsed) {
 		if (dist < 0.4f) {
 			Sound::play(*hurt_sample, 0.5f, 0);
 			score = std::max(0, score - 1000);
+			counter = 0;
 		}
 	}
 }
