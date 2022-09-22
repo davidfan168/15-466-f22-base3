@@ -1,0 +1,4 @@
+#!/bin/bash
+rm -rf ./objs
+node Maekfile.js
+./dist/game

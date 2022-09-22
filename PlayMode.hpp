@@ -20,10 +20,9 @@ struct PlayMode : Mode {
 	//----- game state -----
 
 	//input tracking:
-	struct Button {
-		uint8_t downs = 0;
-		uint8_t pressed = 0;
-	} left, right, down, up;
+	bool space_btn_down = false;
+	bool left_btn_pressed = false, right_btn_pressed = false, 
+		 down_btn_pressed = false, up_btn_pressed = false;
 
 	//local copy of the game scene (so code can change it during gameplay):
 	Scene scene;
@@ -31,17 +30,24 @@ struct PlayMode : Mode {
 	Scene::Transform *player = nullptr;
 	Scene::Transform *ground = nullptr;
 
-	//hexapod leg to wobble:
-	// Scene::Transform *hip = nullptr;
-	// Scene::Transform *upper_leg = nullptr;
-	// Scene::Transform *lower_leg = nullptr;
-	// glm::quat hip_base_rotation;
-	// glm::quat upper_leg_base_rotation;
-	// glm::quat lower_leg_base_rotation;
-
-	std::shared_ptr< Sound::PlayingSample > background_music;
+	// std::shared_ptr< Sound::PlayingSample > background_music;
 	
-	//camera:
 	Scene::Camera *camera = nullptr;
 
+	static constexpr float min_x = -3.88f;
+	static constexpr float min_y = -4.61f;
+	static constexpr float max_x = 4.0f;
+	static constexpr float max_y = 3.53f;
+
+	int score = 0;
+	int level = 1;
+	int counter = 0;
+	int partial_counter = 0;
+	
+	struct Bullet {
+		Scene::Transform *transform = nullptr;
+		glm::vec3 direction;
+	};
+	void spawn_bullet();
+	std::vector<Bullet> bullets;
 };
